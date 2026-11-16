@@ -1,251 +1,289 @@
+/* =====================================================
+   DADOS
+===================================================== */
+
 const PIX_KEY = "16752191760";
 const WHATSAPP = "5521965956171";
 
-// 05/03/2027 às 20:30 no horário de Brasília
 const EVENT_DATE = new Date("2027-03-05T20:30:00-03:00");
 
 
-/* =========================
-   CONFIRMAÇÃO DE PRESENÇA
-========================= */
+/* =====================================================
+   MODAL
+===================================================== */
 
-function abrirModal(tipo) {
-  const modal = document.getElementById("modal-confirmacao");
+function openConfirm() {
 
-  if (!modal) return;
+  const modalContent = document.getElementById("modalContent");
 
-  modal.classList.add("show");
+  modalContent.innerHTML = `
 
-  if (tipo === "confirmacao") {
-    const campo = document.getElementById("nomePrincipal");
+    <h2>Confirmar presença</h2>
 
-    if (campo) {
-      setTimeout(() => campo.focus(), 100);
-    }
-  }
+    <p class="intro">
+      Confirme sua presença no XV da Júlia.
+    </p>
+
+    <div class="form-group">
+
+      <label for="name">
+        Convidado principal
+      </label>
+
+      <input
+        id="name"
+        class="field"
+        type="text"
+        placeholder="Digite seu nome completo"
+        autocomplete="name"
+      >
+
+    </div>
+
+
+    <div class="guest-section">
+
+      <div class="guest-heading">
+
+        <span>Adultos acompanhantes</span>
+
+        <button
+          type="button"
+          class="add-btn"
+          onclick="addGuest('adult')">
+          + Adicionar
+        </button>
+
+      </div>
+
+      <div
+        id="adult-list"
+        class="guest-list">
+      </div>
+
+    </div>
+
+
+    <div class="guest-section">
+
+      <div class="guest-heading">
+
+        <span>Crianças até 7 anos</span>
+
+        <button
+          type="button"
+          class="add-btn"
+          onclick="addGuest('child')">
+          + Adicionar
+        </button>
+
+      </div>
+
+      <div
+        id="child-list"
+        class="guest-list">
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="send-btn"
+      onclick="sendConfirm()">
+
+      ENVIAR CONFIRMAÇÃO
+
+    </button>
+
+
+    <p class="small">
+      Você será direcionado para o WhatsApp.
+    </p>
+
+  `;
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+  document
+    .getElementById("name")
+    .focus();
 }
 
 
-function fecharModal() {
-  const modal = document.getElementById("modal-confirmacao");
+/* =====================================================
+   ADICIONAR ACOMPANHANTE
+===================================================== */
 
-  if (modal) {
-    modal.classList.remove("show");
-  }
-}
+function addGuest(type) {
 
+  const list = document.getElementById(
+    type === "adult"
+      ? "adult-list"
+      : "child-list"
+  );
 
-/* =========================
-   ADICIONAR ADULTO
-========================= */
+  const row = document.createElement("div");
 
-function adicionarAdulto() {
-  adicionarConvidado("adulto");
-}
+  row.className = "guest-row";
 
+  row.innerHTML = `
 
-/* =========================
-   ADICIONAR CRIANÇA
-========================= */
-
-function adicionarCrianca() {
-  adicionarConvidado("crianca");
-}
-
-
-/* =========================
-   CRIAR CAMPO DE CONVIDADO
-========================= */
-
-function adicionarConvidado(tipo) {
-
-  const lista = tipo === "adulto"
-    ? document.getElementById("lista-adultos")
-    : document.getElementById("lista-criancas");
-
-  if (!lista) return;
-
-  const numero = lista.children.length + 1;
-
-  const linha = document.createElement("div");
-
-  linha.className = "convidado-item";
-
-  linha.innerHTML = `
     <input
       type="text"
-      class="campo-convidado"
-      data-tipo="${tipo}"
+      class="field guest-name"
+      data-type="${type}"
       placeholder="${
-        tipo === "adulto"
+        type === "adult"
           ? "Nome completo do adulto"
           : "Nome completo da criança"
       }"
-      autocomplete="name"
+      autocomplete="off"
     >
 
     <button
       type="button"
-      class="btn-remover"
+      class="remove-btn"
       aria-label="Remover convidado">
       ×
     </button>
+
   `;
 
-  linha.querySelector(".btn-remover").addEventListener("click", function () {
-    linha.remove();
-    atualizarNumeracao();
-  });
+  row
+    .querySelector(".remove-btn")
+    .addEventListener("click", function () {
+      row.remove();
+    });
 
-  lista.appendChild(linha);
+  list.appendChild(row);
 
-  const campo = linha.querySelector(".campo-convidado");
-
-  if (campo) {
-    campo.focus();
-  }
-
-  atualizarNumeracao();
+  row
+    .querySelector(".guest-name")
+    .focus();
 }
 
 
-/* =========================
-   ATUALIZAR NUMERAÇÃO
-========================= */
-
-function atualizarNumeracao() {
-
-  const adultos = document.querySelectorAll(
-    '#lista-adultos .campo-convidado'
-  );
-
-  adultos.forEach((campo, index) => {
-    campo.placeholder =
-      `Nome completo do adulto ${index + 1}`;
-  });
-
-
-  const criancas = document.querySelectorAll(
-    '#lista-criancas .campo-convidado'
-  );
-
-  criancas.forEach((campo, index) => {
-    campo.placeholder =
-      `Nome completo da criança ${index + 1}`;
-  });
-}
-
-
-/* =========================
+/* =====================================================
    PEGAR NOMES
-========================= */
+===================================================== */
 
-function pegarNomes(tipo) {
+function getGuestNames(type) {
 
-  const campos = document.querySelectorAll(
-    `.campo-convidado[data-tipo="${tipo}"]`
+  const fields = document.querySelectorAll(
+    `.guest-name[data-type="${type}"]`
   );
 
-  return Array.from(campos)
-    .map(campo => campo.value.trim())
-    .filter(nome => nome !== "");
+  return Array.from(fields)
+    .map(field => field.value.trim())
+    .filter(name => name !== "");
 }
 
 
-/* =========================
+/* =====================================================
    ENVIAR CONFIRMAÇÃO
-========================= */
+===================================================== */
 
-function enviarConfirmacao() {
+function sendConfirm() {
 
-  const nomePrincipal =
-    document.getElementById("nomePrincipal")?.value.trim();
+  const mainName =
+    document
+      .getElementById("name")
+      .value
+      .trim();
 
-  if (!nomePrincipal) {
+  if (!mainName) {
 
-    alert("Digite o nome completo do convidado principal.");
+    alert(
+      "Digite o nome completo do convidado principal."
+    );
 
-    document.getElementById("nomePrincipal")?.focus();
+    document
+      .getElementById("name")
+      .focus();
 
     return;
   }
 
 
-  const adultos = pegarNomes("adulto");
+  const adults = getGuestNames("adult");
 
-  const criancas = pegarNomes("crianca");
-
-
-  let mensagem =
-    "Olá! Confirmo minha presença no XV da Júlia.%0A%0A";
-
-  mensagem +=
-    `CONVIDADO PRINCIPAL:%0A${encodeURIComponent(nomePrincipal)}%0A%0A`;
+  const children = getGuestNames("child");
 
 
-  mensagem +=
-    `ADULTOS ACOMPANHANTES (${adultos.length}):%0A`;
+  let message = "";
 
-  if (adultos.length > 0) {
+  message +=
+    "Olá! Quero confirmar minha presença no XV da Júlia.";
 
-    adultos.forEach((nome, index) => {
+  message +=
+    `\n\nCONVIDADO PRINCIPAL:\n${mainName}`;
 
-      mensagem +=
-        `${index + 1}. ${encodeURIComponent(nome)}%0A`;
+
+  message +=
+    `\n\nADULTOS ACOMPANHANTES (${adults.length}):`;
+
+  if (adults.length) {
+
+    adults.forEach((name, index) => {
+
+      message +=
+        `\n${index + 1}. ${name}`;
 
     });
 
   } else {
 
-    mensagem += "Nenhum%0A";
+    message += "\nNenhum";
 
   }
 
 
-  mensagem +=
-    `%0ACRIANÇAS ATÉ 7 ANOS (${criancas.length}):%0A`;
+  message +=
+    `\n\nCRIANÇAS ATÉ 7 ANOS (${children.length}):`;
 
-  if (criancas.length > 0) {
+  if (children.length) {
 
-    criancas.forEach((nome, index) => {
+    children.forEach((name, index) => {
 
-      mensagem +=
-        `${index + 1}. ${encodeURIComponent(nome)}%0A`;
+      message +=
+        `\n${index + 1}. ${name}`;
 
     });
 
   } else {
 
-    mensagem += "Nenhuma%0A";
+    message += "\nNenhuma";
 
   }
 
 
   const url =
-    `https://wa.me/${WHATSAPP}?text=${mensagem}`;
-
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 
   window.open(url, "_blank");
 
 }
 
 
-/* =========================
+/* =====================================================
    COPIAR PIX
-========================= */
+===================================================== */
 
-async function copiarPix() {
+async function copyPix() {
 
   try {
 
     await navigator.clipboard.writeText(PIX_KEY);
 
-    mostrarMensagem(
-      "Chave PIX copiada!",
-      "A chave PIX foi copiada para sua área de transferência."
+    showMessage(
+      "Chave Pix copiada!",
+      PIX_KEY
     );
 
-  } catch (erro) {
+  } catch (error) {
 
     const textarea =
       document.createElement("textarea");
@@ -260,182 +298,165 @@ async function copiarPix() {
 
     textarea.remove();
 
-    mostrarMensagem(
-      "Chave PIX copiada!",
-      "A chave PIX foi copiada para sua área de transferência."
+    showMessage(
+      "Chave Pix copiada!",
+      PIX_KEY
     );
+
   }
+
 }
 
 
-/* =========================
+/* =====================================================
    MENSAGEM
-========================= */
+===================================================== */
 
-function mostrarMensagem(titulo, texto) {
+function showMessage(title, text) {
 
-  const modal =
-    document.getElementById("modal-confirmacao");
+  document.getElementById("modalContent").innerHTML = `
 
-  if (!modal) return;
+    <div class="message-box">
 
-  const conteudo =
-    modal.querySelector(".modal-conteudo");
+      <div class="success-icon">
+        ✓
+      </div>
 
-  if (!conteudo) return;
+      <h2>${title}</h2>
 
-  conteudo.innerHTML = `
+      <p class="pix-value">
+        ${text}
+      </p>
 
-    <button
-      class="fechar"
-      aria-label="Fechar"
-      onclick="fecharModal()">
-      ×
-    </button>
+      <button
+        type="button"
+        class="send-btn"
+        onclick="closeModal()">
 
-    <h2>${titulo}</h2>
+        FECHAR
 
-    <p class="subtitulo">
-      ${texto}
-    </p>
+      </button>
 
-    <button
-      class="btn-enviar"
-      onclick="fecharModal()">
-      FECHAR
-    </button>
+    </div>
 
   `;
 
-  modal.classList.add("show");
+  document
+    .getElementById("modal")
+    .classList.add("show");
 }
 
 
-/* =========================
+/* =====================================================
+   FECHAR MODAL
+===================================================== */
+
+function closeModal() {
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+/* =====================================================
    CONTAGEM REGRESSIVA
-========================= */
+===================================================== */
 
-function atualizarCountdown() {
+function updateCountdown() {
 
-  const agora = new Date();
+  const now = new Date();
 
-  const diferenca =
-    EVENT_DATE.getTime() - agora.getTime();
+  const difference =
+    EVENT_DATE.getTime() - now.getTime();
 
 
-  if (diferenca <= 0) {
+  if (difference <= 0) {
 
-    const contador =
-      document.querySelector(".contador");
+    document
+      .querySelector(".countdown-title")
+      .textContent =
+      "CHEGOU O GRANDE DIA!";
 
-    if (contador) {
-
-      contador.innerHTML = `
-        <div class="contador-titulo">
-          CHEGOU O GRANDE DIA!
-        </div>
-      `;
-
-    }
+    document
+      .querySelector(".countdown-grid")
+      .style.display = "none";
 
     return;
+
   }
 
 
-  const dias =
-    Math.floor(diferenca / 86400000);
-
-  const horas =
+  const days =
     Math.floor(
-      (diferenca % 86400000) / 3600000
-    );
-
-  const minutos =
-    Math.floor(
-      (diferenca % 3600000) / 60000
-    );
-
-  const segundos =
-    Math.floor(
-      (diferenca % 60000) / 1000
+      difference / 86400000
     );
 
 
-  const elementoDias =
-    document.getElementById("dias");
-
-  const elementoHoras =
-    document.getElementById("horas");
-
-  const elementoMinutos =
-    document.getElementById("minutos");
-
-  const elementoSegundos =
-    document.getElementById("segundos");
+  const hours =
+    Math.floor(
+      (difference % 86400000) / 3600000
+    );
 
 
-  if (elementoDias) {
-    elementoDias.textContent =
-      String(dias).padStart(2, "0");
-  }
+  const minutes =
+    Math.floor(
+      (difference % 3600000) / 60000
+    );
 
-  if (elementoHoras) {
-    elementoHoras.textContent =
-      String(horas).padStart(2, "0");
-  }
 
-  if (elementoMinutos) {
-    elementoMinutos.textContent =
-      String(minutos).padStart(2, "0");
-  }
+  const seconds =
+    Math.floor(
+      (difference % 60000) / 1000
+    );
 
-  if (elementoSegundos) {
-    elementoSegundos.textContent =
-      String(segundos).padStart(2, "0");
-  }
+
+  document.getElementById("days")
+    .textContent =
+    String(days).padStart(2, "0");
+
+
+  document.getElementById("hours")
+    .textContent =
+    String(hours).padStart(2, "0");
+
+
+  document.getElementById("minutes")
+    .textContent =
+    String(minutes).padStart(2, "0");
+
+
+  document.getElementById("seconds")
+    .textContent =
+    String(seconds).padStart(2, "0");
+
 }
 
 
-/* =========================
+/* =====================================================
    INICIAR CONTAGEM
-========================= */
+===================================================== */
 
-atualizarCountdown();
+updateCountdown();
 
-setInterval(atualizarCountdown, 1000);
-
-
-/* =========================
-   FECHAR MODAL AO CLICAR FORA
-========================= */
-
-window.addEventListener("click", function (event) {
-
-  const modal =
-    document.getElementById("modal-confirmacao");
-
-  if (
-    modal &&
-    event.target === modal
-  ) {
-
-    fecharModal();
-
-  }
-
-});
+setInterval(
+  updateCountdown,
+  1000
+);
 
 
-/* =========================
-   ESC FECHA O MODAL
-========================= */
+/* =====================================================
+   ESC
+===================================================== */
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener(
+  "keydown",
+  function (event) {
 
-  if (event.key === "Escape") {
-
-    fecharModal();
+    if (event.key === "Escape") {
+      closeModal();
+    }
 
   }
-
-});
+);
