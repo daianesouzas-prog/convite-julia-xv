@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>Convite Júlia XV</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="invite">
+  <section class="hero">
+    <div class="veil"></div>
+    <div class="hero-content">
+      <p class="eyebrow">UMA NOITE PARA GUARDAR NA MEMÓRIA</p>
+      <h1>Júlia</h1>
+      <div class="roman">XV</div>
+      <p class="date">15 ANOS</p>
+      <button class="primary" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})">ABRIR CONVITE</button>
+    </div>
+  </section>
+
+  <section id="details" class="section">
+    <p class="eyebrow">VOCÊ É NOSSO CONVIDADO</p>
+    <h2>Júlia XV</h2>
+    <p class="text">Uma noite especial merece pessoas especiais. Venha celebrar esse momento inesquecível conosco.</p>
+
+    <div class="card">
+      <div class="icon">✦</div>
+      <h3>Data</h3>
+      <p>15 de janeiro de 2027</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">◷</div>
+      <h3>Horário</h3>
+      <p>19:00</p>
+    </div>
+
+    <div class="actions">
+      <a class="action" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 LOCALIZAÇÃO</a>
+      <button class="action" onclick="openRsvp()">💌 CONFIRMAR PRESENÇA</button>
+      <button class="action" onclick="openPix()">💳 COPIAR CHAVE PIX</button>
+      <button class="action" onclick="openGift()">🎁 SUGESTÃO DE PRESENTE</button>
+    </div>
+
+    <div class="countdown">
+      <p class="eyebrow">CONTAGEM REGRESSIVA</p>
+      <div id="timer" class="timer">-- : -- : -- : --</div>
+      <div class="labels"><span>DIAS</span><span>HORAS</span><span>MIN</span><span>SEG</span></div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <p class="eyebrow">MOMENTO ESPECIAL</p>
+    <h2>Esperamos você</h2>
+    <p class="text">Salve esta data e venha comemorar os 15 anos da Júlia.</p>
+    <button class="primary" onclick="openRsvp()">CONFIRMAR PRESENÇA</button>
+  </section>
+
+  <footer>JÚLIA XV · 2027</footer>
+</main>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
