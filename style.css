@@ -1,6 +1,6 @@
-/* =====================================================
+/* =========================================
    BASE
-===================================================== */
+========================================= */
 
 * {
   box-sizing: border-box;
@@ -20,15 +20,10 @@ body {
 
 .site {
   width: 100%;
-  max-width: 900px;
+  max-width: 707px;
   margin: 0 auto;
   background: #fff;
 }
-
-
-/* =====================================================
-   PÁGINAS / ARTES
-===================================================== */
 
 .page {
   position: relative;
@@ -43,9 +38,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================
    ÁREAS CLICÁVEIS
-===================================================== */
+========================================= */
 
 .hotspot {
   position: absolute;
@@ -61,227 +56,106 @@ body {
 
   cursor: pointer;
 
-  z-index: 5;
+  z-index: 10;
 
   text-decoration: none;
+
+  /* IMPORTANTE:
+     não cria nenhuma caixa visível */
+  outline: none;
+}
+
+.hotspot:hover,
+.hotspot:focus,
+.hotspot:active {
+  background: transparent;
+  outline: none;
 }
 
 
-/* =====================================================
-   CONFIRMAÇÃO
-   FICA DENTRO DO CÍRCULO AZUL-MARINHO
-===================================================== */
+/* =========================================
+   CONFIRMAR PRESENÇA
+   EXATAMENTE NO CÍRCULO AZUL-MARINHO
+========================================= */
 
 .confirm {
 
   left: 24.5%;
-  top: 69.3%;
+  top: 82.5%;
 
-  width: 18%;
-  height: 15%;
+  width: 16%;
+  height: 11%;
 
 }
 
 
-/* =====================================================
+/* =========================================
    LOCALIZAÇÃO
-   FICA DENTRO DO CÍRCULO AZUL-MARINHO
-===================================================== */
+   EXATAMENTE NO CÍRCULO AZUL-MARINHO
+========================================= */
 
 .location {
 
-  left: 62.5%;
-  top: 69.3%;
+  left: 61.5%;
+  top: 82.5%;
 
-  width: 18%;
-  height: 15%;
-
-}
-
-
-/* =====================================================
-   CONTAGEM REGRESSIVA
-===================================================== */
-
-.countdown-section {
-
-  width: 100%;
-
-  padding:
-    22px
-    20px
-    26px;
-
-  background: #ffffff;
-
-  text-align: center;
-
-  line-height: 1.2;
+  width: 16%;
+  height: 11%;
 
 }
 
 
-.countdown-title {
-
-  margin-bottom: 13px;
-
-  color: #18365f;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 14px;
-
-  font-weight: 700;
-
-  letter-spacing: 2px;
-
-}
-
-
-.countdown-grid {
-
-  width: 100%;
-
-  max-width: 430px;
-
-  margin: 0 auto;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 8px;
-
-}
-
-
-.countdown-item {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 5px 2px;
-
-}
-
-
-.countdown-item strong {
-
-  display: block;
-
-  color: #18365f;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 27px;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-}
-
-
-.countdown-item span {
-
-  display: block;
-
-  margin-top: 6px;
-
-  color: #777;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 9px;
-
-  letter-spacing: 1.5px;
-
-  line-height: 1;
-
-}
-
-
-/* =====================================================
+/* =========================================
    MANUAL
-===================================================== */
+========================================= */
 
 .manual-page {
-
   position: relative;
-
   width: 100%;
 }
 
 .manual-page .art {
-
   width: 100%;
-
   height: auto;
-
   display: block;
-
 }
 
 
-/* =====================================================
+/* =========================================
    SUGESTÃO DE PRESENTE
-===================================================== */
+   SOMENTE NO BOTÃO AZUL
+========================================= */
 
 .gift {
 
   left: 13%;
-  top: 76.5%;
+  top: 77.5%;
 
-  width: 77%;
-  height: 8.5%;
+  width: 68%;
+  height: 6.5%;
 
 }
 
 
-/* =====================================================
-   PIX
-===================================================== */
+/* =========================================
+   COPIAR PIX
+   SOMENTE NO BOTÃO DOURADO
+========================================= */
 
 .pix {
 
-  left: 58%;
-  top: 85.2%;
+  left: 56%;
+  top: 87%;
 
-  width: 34%;
-  height: 7.8%;
-
-}
-
-
-/* =====================================================
-   EFEITO SUTIL AO PASSAR O MOUSE
-===================================================== */
-
-.hotspot:hover {
-
-  background: rgba(255, 255, 255, 0.04);
+  width: 25%;
+  height: 5.8%;
 
 }
 
 
-/* =====================================================
+/* =========================================
    MODAL
-===================================================== */
+========================================= */
 
 .modal {
 
@@ -296,60 +170,54 @@ body {
 
   padding: 20px;
 
-  background:
-    rgba(8, 18, 35, 0.68);
+  background: rgba(8, 18, 35, 0.72);
 
-  z-index: 100;
+  z-index: 1000;
 
   align-items: center;
   justify-content: center;
 
 }
 
-
 .modal.show {
-
   display: flex;
-
 }
 
 
-/* =====================================================
+/* =========================================
    CAIXA DO FORMULÁRIO
-===================================================== */
+========================================= */
 
 .modal-box {
 
   position: relative;
 
   width: 100%;
-
-  max-width: 460px;
+  max-width: 450px;
 
   max-height: 90vh;
 
   overflow-y: auto;
 
-  padding: 30px 26px 26px;
+  padding: 32px 28px 28px;
 
   background: #ffffff;
 
-  border: 1px solid #d8c79d;
+  border: 2px solid #d8c79d;
 
-  border-radius: 20px;
+  border-radius: 18px;
 
   box-shadow:
-    0 20px 70px
-    rgba(0, 0, 0, 0.35);
+    0 20px 60px rgba(0, 0, 0, 0.35);
 
   line-height: 1.4;
 
 }
 
 
-/* =====================================================
-   TÍTULO DO FORMULÁRIO
-===================================================== */
+/* =========================================
+   TÍTULO
+========================================= */
 
 .modal-box h2 {
 
@@ -371,6 +239,10 @@ body {
 }
 
 
+/* =========================================
+   TEXTO
+========================================= */
+
 .intro {
 
   margin: 0 0 22px;
@@ -379,21 +251,23 @@ body {
 
   font-size: 14px;
 
+  line-height: 1.5;
+
   text-align: center;
 
 }
 
 
-/* =====================================================
+/* =========================================
    FECHAR
-===================================================== */
+========================================= */
 
 .close {
 
   position: absolute;
 
-  top: 9px;
-  right: 13px;
+  top: 10px;
+  right: 14px;
 
   width: 34px;
   height: 34px;
@@ -415,16 +289,13 @@ body {
 }
 
 
-/* =====================================================
-   CAMPOS
-===================================================== */
+/* =========================================
+   CAMPO PRINCIPAL
+========================================= */
 
 .form-group {
-
   margin-bottom: 20px;
-
 }
-
 
 .form-group label {
 
@@ -455,7 +326,7 @@ body {
 
   border: 1px solid #cfcfcf;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
   background: #ffffff;
 
@@ -472,21 +343,19 @@ body {
 
 }
 
-
 .field:focus {
 
   border-color: #18365f;
 
   box-shadow:
-    0 0 0 3px
-    rgba(24, 54, 95, 0.10);
+    0 0 0 3px rgba(24, 54, 95, 0.10);
 
 }
 
 
-/* =====================================================
-   SEÇÕES DE ACOMPANHANTES
-===================================================== */
+/* =========================================
+   ACOMPANHANTES
+========================================= */
 
 .guest-section {
 
@@ -521,9 +390,7 @@ body {
 
 
 .guest-list {
-
   width: 100%;
-
 }
 
 
@@ -541,11 +408,13 @@ body {
 
 
 .guest-row .field {
-
   flex: 1;
-
 }
 
+
+/* =========================================
+   ADICIONAR
+========================================= */
 
 .add-btn {
 
@@ -574,7 +443,6 @@ body {
 
 }
 
-
 .add-btn:hover {
 
   background: #18365f;
@@ -584,10 +452,13 @@ body {
 }
 
 
+/* =========================================
+   REMOVER
+========================================= */
+
 .remove-btn {
 
   width: 34px;
-
   height: 34px;
 
   flex-shrink: 0;
@@ -609,9 +480,9 @@ body {
 }
 
 
-/* =====================================================
-   BOTÃO ENVIAR
-===================================================== */
+/* =========================================
+   ENVIAR
+========================================= */
 
 .send-btn {
 
@@ -633,9 +504,7 @@ body {
 
   color: #ffffff;
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 13px;
 
@@ -647,17 +516,14 @@ body {
 
 }
 
-
 .send-btn:hover {
-
   background: #294d7d;
-
 }
 
 
-/* =====================================================
+/* =========================================
    TEXTO PEQUENO
-===================================================== */
+========================================= */
 
 .small {
 
@@ -665,9 +531,7 @@ body {
 
   color: #777;
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 11px;
 
@@ -676,16 +540,13 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================
    MENSAGEM PIX
-===================================================== */
+========================================= */
 
 .message-box {
-
   text-align: center;
-
 }
-
 
 .success-icon {
 
@@ -706,7 +567,6 @@ body {
 
 }
 
-
 .pix-value {
 
   padding: 13px;
@@ -722,58 +582,22 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================
    CELULAR
-===================================================== */
+========================================= */
 
 @media (max-width: 600px) {
 
-  .countdown-section {
-
-    padding:
-      18px
-      14px
-      22px;
-
-  }
-
-
-  .countdown-title {
-
-    font-size: 12px;
-
-    letter-spacing: 1.5px;
-
-  }
-
-
-  .countdown-item strong {
-
-    font-size: 22px;
-
-  }
-
-
-  .countdown-item span {
-
-    font-size: 8px;
-
-  }
-
-
   .modal {
-
     padding: 12px;
-
   }
-
 
   .modal-box {
 
     max-height: 92vh;
 
     padding:
-      28px
+      30px
       17px
       20px;
 
@@ -781,20 +605,13 @@ body {
 
   }
 
-
   .modal-box h2 {
-
     font-size: 23px;
-
   }
-
 
   .guest-heading {
-
     align-items: flex-start;
-
   }
-
 
   .add-btn {
 
