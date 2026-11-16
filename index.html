@@ -10,30 +10,42 @@
 <body>
 <main class="site">
 
-  <!-- Página 1: convite -->
-  <section class="page invite-page">
-    <img src="convite.png" alt="Convite Júlia XV" class="art">
-    <div class="hotspot confirm" role="button" tabindex="0"
-         aria-label="Confirmar presença" onclick="openConfirm()"></div>
-    <a class="hotspot location" aria-label="Abrir localização"
-       href="https://maps.app.goo.gl/zsysBfrRDXfNh6GW7" target="_blank" rel="noopener"></a>
-  </section>
+<section class="page invite-page">
+<img src="convite.png" alt="Convite Júlia XV" class="art">
 
-  <!-- Página 2: manual -->
-  <section class="page manual-page">
-    <img src="manual.png" alt="Manual do convidado Júlia XV" class="art">
-    <a class="hotspot gift" aria-label="Sugestão de presente"
-       href="https://aniversario-gyot.listaideal.com.br/pt" target="_blank" rel="noopener"></a>
-    <button class="hotspot pix" aria-label="Copiar chave Pix" onclick="copyPix()"></button>
-  </section>
+<div class="hotspot confirm" role="button" tabindex="0"
+aria-label="Confirmar presença" onclick="openConfirm()"></div>
+
+<a class="hotspot location" aria-label="Abrir localização"
+href="https://maps.app.goo.gl/zsysBfrRDXfNh6GW7" target="_blank" rel="noopener"></a>
+
+<div id="countdown" class="countdown" aria-live="polite">
+  <div class="countdown-title">FALTAM</div>
+  <div class="countdown-grid">
+    <div><strong id="cd-days">00</strong><span>DIAS</span></div>
+    <div><strong id="cd-hours">00</strong><span>HORAS</span></div>
+    <div><strong id="cd-minutes">00</strong><span>MIN</span></div>
+    <div><strong id="cd-seconds">00</strong><span>SEG</span></div>
+  </div>
+</div>
+</section>
+
+<section class="page manual-page">
+<img src="manual.png" alt="Manual do convidado Júlia XV" class="art">
+
+<a class="hotspot gift" aria-label="Sugestão de presente"
+href="https://aniversario-gyot.listaideal.com.br/pt" target="_blank" rel="noopener"></a>
+
+<button class="hotspot pix" aria-label="Copiar chave Pix" onclick="copyPix()"></button>
+</section>
 
 </main>
 
 <div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal-box">
-    <button class="close" aria-label="Fechar" onclick="closeModal()">×</button>
-    <div id="modalContent"></div>
-  </div>
+<div class="modal-box">
+<button class="close" aria-label="Fechar" onclick="closeModal()">×</button>
+<div id="modalContent"></div>
+</div>
 </div>
 
 <script src="script.js"></script>
