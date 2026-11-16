@@ -1,11 +1,15 @@
-# Convite Júlia XV — versão gratuita
+# Convite Júlia XV — versão atualizada
 
-1. Abra index.html no navegador para testar.
-2. Edite script.js:
-   - PIX_KEY = sua chave Pix
-   - MAPS_URL = link do Google Maps
-   - SEUNUMERO = WhatsApp que receberá as confirmações, com DDD e sem espaços.
-3. Edite index.html/style.css se quiser trocar textos, data, cores ou imagens.
-4. Publique gratuitamente no GitHub Pages.
+Dados configurados:
+- Data: 05/03/2027
+- Horário: 20:30
+- Local: R. Fernando Saboya de Fiúsa, 647 - Campo Grande, Rio de Janeiro - RJ, 23088-600
+- Google Maps: https://maps.app.goo.gl/zsysBfrRDXfNh6GW7
+- WhatsApp para confirmação: +55 21 96595-6171
+- Pix: 16752191760
+- Sugestão de presente: https://aniversario-gyot.listaideal.com.br/pt
 
-Observação: este pacote é um modelo funcional. Antes de divulgar, troque a chave Pix, número do WhatsApp e link da localização.
+Arquivos:
+- index.html
+- style.css
+- script.js
