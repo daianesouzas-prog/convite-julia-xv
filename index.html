@@ -3,172 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Júlia XV - Convite</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="site">
+  <main class="site">
 
-  <!-- CONVITE PRINCIPAL -->
-  <section class="convite-container">
+    <!-- CONVITE PRINCIPAL -->
+    <section class="convite-container">
 
-    <img src="convite.png" alt="Convite Júlia XV" class="convite">
+      <img
+        src="convite.png"
+        alt="Convite Júlia XV"
+        class="convite"
+      >
 
-    <!-- ÁREA CLICÁVEL CONFIRMAR PRESENÇA -->
-    <button
-      class="area-clicavel confirmar"
-      aria-label="Confirmar presença"
-      onclick="abrirModal('confirmacao')">
-    </button>
+      <!-- ÁREA CLICÁVEL - CONFIRMAÇÃO -->
+      <button
+        class="area-clicavel confirm"
+        aria-label="Confirmar presença"
+        onclick="abrirModal()">
+      </button>
 
-    <!-- ÁREA CLICÁVEL LOCALIZAÇÃO -->
-    <a
-      class="area-clicavel localizacao"
-      href="https://maps.app.goo.gl/zsysBfrRDXfNh6GW7"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Abrir localização no Google Maps">
-    </a>
+      <!-- ÁREA CLICÁVEL - LOCALIZAÇÃO -->
+      <a
+        class="area-clicavel localizacao"
+        href="https://maps.app.goo.gl/zsysBfRDXNh6GQW7"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Abrir localização no Google Maps">
+      </a>
 
-    <!-- CONTAGEM REGRESSIVA -->
-    <div class="contador">
-      <div class="contador-titulo">CONTAGEM REGRESSIVA</div>
+      <!-- CONTAGEM REGRESSIVA -->
+      <div class="countdown" id="countdown">
 
-      <div class="contador-grid">
-        <div>
-          <span id="dias">00</span>
-          <small>DIAS</small>
+        <div class="countdown-title">
+          CONTAGEM REGRESSIVA
         </div>
 
-        <div>
-          <span id="horas">00</span>
-          <small>HORAS</small>
+        <div class="countdown-grid">
+
+          <div class="count-item">
+            <span id="days">00</span>
+            <small>DIAS</small>
+          </div>
+
+          <div class="count-item">
+            <span id="hours">00</span>
+            <small>HORAS</small>
+          </div>
+
+          <div class="count-item">
+            <span id="minutes">00</span>
+            <small>MIN</small>
+          </div>
+
+          <div class="count-item">
+            <span id="seconds">00</span>
+            <small>SEG</small>
+          </div>
+
         </div>
 
-        <div>
-          <span id="minutos">00</span>
-          <small>MIN</small>
-        </div>
-
-        <div>
-          <span id="segundos">00</span>
-          <small>SEG</small>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- MANUAL DO CONVIDADO -->
-  <section class="manual-container">
-
-    <img
-      src="manual.png"
-      alt="Manual do convidado Júlia XV"
-      class="manual">
-
-    <!-- BOTÃO SUGESTÃO DE PRESENTE -->
-    <a
-      class="botao-presente"
-      href="https://aniversario-gyot.listaideal.com.br/pt"
-      target="_blank"
-      rel="noopener noreferrer">
-    </a>
-
-  </section>
-
-</main>
-
-
-<!-- MODAL DE CONFIRMAÇÃO -->
-<div id="modal-confirmacao" class="modal">
-
-  <div class="modal-conteudo">
-
-    <button
-      class="fechar"
-      onclick="fecharModal()"
-      aria-label="Fechar">
-      ×
-    </button>
-
-    <h2>Confirmar presença</h2>
-
-    <p class="subtitulo">
-      Confirme sua presença no XV da Júlia.
-    </p>
-
-
-    <!-- NOME DO CONVIDADO PRINCIPAL -->
-    <div class="campo">
-      <label for="nomePrincipal">
-        Seu nome completo
-      </label>
-
-      <input
-        type="text"
-        id="nomePrincipal"
-        placeholder="Digite seu nome completo">
-    </div>
-
-
-    <!-- ADULTOS -->
-    <div class="grupo-convidados">
-
-      <div class="titulo-grupo">
-        <span>Adultos acompanhantes</span>
-
-        <button
-          type="button"
-          class="btn-adicionar"
-          onclick="adicionarAdulto()">
-          + Adicionar adulto
-        </button>
       </div>
 
-      <div id="lista-adultos"></div>
-
-    </div>
+    </section>
 
 
-    <!-- CRIANÇAS -->
-    <div class="grupo-convidados">
+    <!-- MANUAL DO CONVIDADO -->
+    <section class="manual-container">
 
-      <div class="titulo-grupo">
-        <span>Crianças até 7 anos</span>
+      <img
+        src="manual.png"
+        alt="Manual do Convidado Júlia XV"
+        class="manual"
+      >
 
-        <button
-          type="button"
-          class="btn-adicionar"
-          onclick="adicionarCrianca()">
-          + Adicionar criança
-        </button>
+      <!-- CONFIRMAR PRESENÇA NO MANUAL -->
+      <button
+        class="manual-button confirm-manual"
+        onclick="abrirModal()"
+        aria-label="Confirmar presença">
+      </button>
+
+      <!-- SUGESTÃO DE PRESENTE -->
+      <a
+        class="manual-button presente"
+        href="https://aniversario-gyot.listadeideias.com.br/pt"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Sugestão de presente">
+      </a>
+
+      <!-- PIX -->
+      <button
+        class="manual-button pix"
+        onclick="copyPix()"
+        aria-label="Copiar chave Pix">
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- MODAL DE CONFIRMAÇÃO -->
+  <div
+    id="modal-confirmacao"
+    class="modal"
+    aria-hidden="true">
+
+    <div class="modal-content">
+
+      <button
+        class="modal-close"
+        onclick="fecharModal()"
+        aria-label="Fechar">
+        ×
+      </button>
+
+      <h2>Confirmar presença</h2>
+
+      <p class="modal-subtitulo">
+        Confirme sua presença no XV da Júlia.
+      </p>
+
+
+      <!-- CONVIDADO PRINCIPAL -->
+      <div class="field">
+
+        <label for="nomePrincipal">
+          Seu nome completo
+        </label>
+
+        <input
+          type="text"
+          id="nomePrincipal"
+          placeholder="Digite seu nome completo"
+          autocomplete="name">
+
       </div>
 
-      <div id="lista-criancas"></div>
+
+      <!-- ADULTOS -->
+      <section class="guest-section">
+
+        <div class="guest-heading">
+
+          <span>
+            Adultos acompanhantes
+          </span>
+
+          <button
+            type="button"
+            class="btn-adicionar"
+            onclick="adicionarAdulto()">
+            + Adicionar adulto
+          </button>
+
+        </div>
+
+        <div id="lista-adultos"></div>
+
+      </section>
+
+
+      <!-- CRIANÇAS -->
+      <section class="guest-section">
+
+        <div class="guest-heading">
+
+          <span>
+            Crianças até 7 anos
+          </span>
+
+          <button
+            type="button"
+            class="btn-adicionar"
+            onclick="adicionarCrianca()">
+            + Adicionar criança
+          </button>
+
+        </div>
+
+        <div id="lista-criancas"></div>
+
+      </section>
+
+
+      <!-- ENVIO -->
+      <button
+        type="button"
+        class="btn-enviar"
+        onclick="enviarConfirmacao()">
+        ENVIAR CONFIRMAÇÃO
+      </button>
+
+      <p class="aviso-whatsapp">
+        Você será direcionado para o WhatsApp.
+      </p>
 
     </div>
-
-
-    <button
-      class="btn-enviar"
-      onclick="enviarConfirmacao()">
-      ENVIAR CONFIRMAÇÃO
-    </button>
-
-    <p class="aviso-whatsapp">
-      Você será direcionado para o WhatsApp.
-    </p>
 
   </div>
 
-</div>
 
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
